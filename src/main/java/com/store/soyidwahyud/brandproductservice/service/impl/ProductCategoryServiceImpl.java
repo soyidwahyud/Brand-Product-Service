@@ -8,6 +8,7 @@ import com.store.soyidwahyud.brandproductservice.repository.ProductCategoryRepos
 import com.store.soyidwahyud.brandproductservice.service.ProductCategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,12 +31,14 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     private ProductCategoryMapper productCategoryMapper;
 
     @Override
+    @Cacheable("productCategoryCache")
     public List<ProductCategoryResponse> findAll() {
         var productCategoryList = productCategoryRepository.findAll();
         return productCategoryList.stream().map(productCategoryMapper :: responseProductCategoryResponse).collect(Collectors.toList());
     }
 
     @Override
+    @Cacheable("productCategoryCache")
     public List<ProductCategoryResponse> findProductCategoriesByProductCategory(String productCategory) {
         var productCategoryList = productCategoryRepository.findProductCategoriesByProductCategory(productCategory);
         return productCategoryList.stream().map(productCategoryMapper :: responseProductCategoryResponse).collect(Collectors.toList());

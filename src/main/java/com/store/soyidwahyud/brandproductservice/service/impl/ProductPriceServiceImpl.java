@@ -7,6 +7,7 @@ import com.store.soyidwahyud.brandproductservice.repository.ProductPriceReposito
 import com.store.soyidwahyud.brandproductservice.service.ProductPriceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -25,12 +26,14 @@ public class ProductPriceServiceImpl implements ProductPriceService {
     private ProductPriceMapper productPriceMapper;
 
     @Override
+    @Cacheable("productPriceCache")
     public List<ProductPriceResponse> findAll() {
         var productPriceList = productPriceRepository.findAll();
         return productPriceList.stream().map(productPriceMapper :: responseProductPriceResponse).collect(Collectors.toList());
     }
 
     @Override
+    @Cacheable("productPriceCache")
     public List<ProductPriceResponse> findByProductPriceName(String productPriceName) {
         var productPriceList = productPriceRepository.findAllByProductPrice(productPriceName);
         return productPriceList.stream().map(productPriceMapper :: responseProductPriceResponse).collect(Collectors.toList());

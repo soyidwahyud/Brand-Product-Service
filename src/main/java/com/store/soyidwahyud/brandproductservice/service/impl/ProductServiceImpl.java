@@ -7,6 +7,7 @@ import com.store.soyidwahyud.brandproductservice.repository.ProductRepository;
 import com.store.soyidwahyud.brandproductservice.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -25,17 +26,20 @@ public class ProductServiceImpl implements ProductService {
     private ProductMapper productMapper;
 
     @Override
+    @Cacheable("productCache")
     public List<ProductResponse> findAll() {
         var productResponseList = productRepository.findAll();
         return productResponseList.stream().map(productMapper :: responseProductResponse).collect(Collectors.toList());
     }
 
     @Override
+    @Cacheable("productCache")
     public List<ProductResponse> findAllByProductType(String productType) {
         return null;
     }
 
     @Override
+    @Cacheable("productCache")
     public List<ProductResponse> findAllByProductCategory(String productCategory) {
         return null;
     }
