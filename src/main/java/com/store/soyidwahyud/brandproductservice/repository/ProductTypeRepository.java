@@ -21,4 +21,9 @@ public interface ProductTypeRepository extends JpaRepository<ProductType, Long> 
             "WHERE product_type = :productType " +
             "AND active = 1", nativeQuery = true)
     List<ProductType> findProductTypeByProductType(@Param("productType") String productType);
+
+    @Query(value = "SELECT * " +
+            "FROM tbl_product_type " +
+            "WHERE id_product_type = :idProductType", nativeQuery = true)
+    List<ProductType> findByIdProductType(@Param("idProductType") Long idProductType);
 }
