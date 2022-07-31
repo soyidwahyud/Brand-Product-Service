@@ -27,5 +27,8 @@ public interface ProductCategoryRepository extends JpaRepository<ProductCategory
             "WHERE id_product_category = :idProductCategory", nativeQuery = true)
     Optional<ProductCategory> findProductCategoryByIdProductCategory(@Param("idProductCategory") Long idProductCategory);
 
-
+    @Query(value = "SELECT * " +
+            "FROM tbl_product_category " +
+            "WHERE id_product_category = :idProductCategory", nativeQuery = true)
+    List<ProductCategory> findByIdProductCategory(@Param("idProductCategory") Long idProductCategory);
 }

@@ -34,8 +34,14 @@ public class ProductCategoryMapperImpl implements ProductCategoryMapper {
 
     @Override
     public void requestUpdateProductCategory(ProductCategoryRequest productCategoryRequest, ProductCategory productCategory) {
-        productCategory = new ProductCategory();
-        productCategory.setProductCategory(productCategoryRequest.getProductCategory());
-        productCategory.setSubProductCategory(productCategoryRequest.getSubProductCategory());
+        if(productCategoryRequest == null){
+            return;
+        }
+        if(productCategoryRequest.getProductCategory() != null){
+            productCategory.setProductCategory(productCategoryRequest.getProductCategory());
+        }
+        if(productCategoryRequest.getSubProductCategory() != null){
+            productCategory.setSubProductCategory(productCategoryRequest.getSubProductCategory());
+        }
     }
 }

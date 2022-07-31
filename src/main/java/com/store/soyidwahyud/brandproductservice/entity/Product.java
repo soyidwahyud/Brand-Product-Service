@@ -1,10 +1,7 @@
 package com.store.soyidwahyud.brandproductservice.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -12,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)

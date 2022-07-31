@@ -50,11 +50,11 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Override
     public ProductCategoryResponse updateProductCategory(Long idProductCategory, ProductCategoryRequest productCategoryRequest) {
-        var productCategoryCheck = productCategoryRepository.findProductCategoryByIdProductCategory(idProductCategory).orElseThrow(() ->
-            new ResponseStatusException(HttpStatus.NOT_FOUND)
-        );
-        productCategoryMapper.requestUpdateProductCategory(productCategoryRequest, productCategoryCheck);
-        var result = productCategoryRepository.save(productCategoryCheck);
+        var productCategoryCheck = productCategoryRepository.findByIdProductCategory(idProductCategory);
+
+        var productCategoryUpdate = productCategoryCheck.get(0);
+        productCategoryMapper.requestUpdateProductCategory(productCategoryRequest, productCategoryUpdate);
+        var result = productCategoryRepository.save(productCategoryUpdate);
         return productCategoryMapper.responseProductCategoryResponse(result);
     }
 

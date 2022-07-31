@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Data
+@Table(name = "tbl_product_category")
 @Entity
 @Getter
 @NoArgsConstructor
