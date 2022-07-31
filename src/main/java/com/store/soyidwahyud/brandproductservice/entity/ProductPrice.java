@@ -8,13 +8,14 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
+@Table(name = "tbl_product_price")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class ProductPrice {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long idProductPrice;
 
     @Column
