@@ -11,6 +11,6 @@ public class ProductRequest {
     private Long idProduct;
     private String productCode;
     private String productDescription;
-    private Long idProductCategory;
+    private ProductCategoryRequest productCategoryRequest;
     private Long idProductType;
 }

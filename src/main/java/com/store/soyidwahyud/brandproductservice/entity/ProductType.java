@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Data
 @Entity
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 @Builder(toBuilder = true)
 public class ProductType {
     @Id
-    @Column
+    @Column (name = "id_product_type")
     private Long idProductType;
 
     @Column
